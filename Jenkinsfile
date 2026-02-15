@@ -6,6 +6,14 @@ pipeline {
         SSH_CRED = credentials('aws-user')
     }
 
+    parameters {
+        string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello')
+        text(name: 'BIOGRAPHY', defaultValue: '',description: 'ENter your name')
+        booleanparam(name: 'TOGGLE', defaultValue: true)
+        choice(name: 'CHOICE', choices['one','two','three'], description: 'pick something')
+        password(name: 'PASSWORD', defaultValue: 'SECRET', description: 'Enter a password')
+    }
+
     stages {
         stage('stage one') {
             steps {
