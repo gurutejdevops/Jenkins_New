@@ -4,7 +4,10 @@ pipeline {
     stages {
         stage('stage one') {
             steps {
-                sh "echo stage one "
+                sh '''
+                echo stage one 
+                echo welcome to Jenkins
+                '''
             }
         }
         stage('stage two') {
