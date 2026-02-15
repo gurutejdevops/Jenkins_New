@@ -27,8 +27,10 @@ pipeline {
         }
         stage('stage three') {
             steps {
-                sh "echo stage three"
+                sh '''
+                echo stage three
                 env
+                '''
             }
         }
     }
