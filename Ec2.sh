@@ -14,14 +14,12 @@ SUBNET_ID="subnet-02347b81b06bf19b4"
 # ---------- ASSUME ROLE ----------
 echo "Assuming IAM Role..."
 
-ASSUME_ROLE_OUTPUT=$(aws sts assume-role \
+CREDENTIALS=$(aws sts assume-role \
   --role-arn $ROLE_ARN \
   --role-session-name $SESSION_NAME \
-  --region $REGION)
-
-export AWS_ACCESS_KEY_ID=$(echo $ASSUME_ROLE_OUTPUT | jq -r '.Credentials.AccessKeyId')
-export AWS_SECRET_ACCESS_KEY=$(echo $ASSUME_ROLE_OUTPUT | jq -r '.Credentials.SecretAccessKey')
-export AWS_SESSION_TOKEN=$(echo $ASSUME_ROLE_OUTPUT | jq -r '.Credentials.SessionToken')
+  --region $REGION \
+  --query 'Credentials.[AccessKeyId,SecretAccessKey,SessionToken]' \
+  --output text)
 
 echo "Role assumed successfully."
 
