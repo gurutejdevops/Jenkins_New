@@ -12,18 +12,6 @@ INSTANCE_TYPE="t2.micro"
 SECURITY_GROUP="sg-0a9d2be0531ab2dde"
 SUBNET_ID="subnet-02347b81b06bf19b4"
 
-# ---------- ASSUME ROLE ----------
-echo "Assuming IAM Role..."
-
-CREDENTIALS=$(aws sts assume-role \
-  --role-arn $ROLE_ARN \
-  --role-session-name $SESSION_NAME \
-  --region $REGION \
-  --query 'Credentials.[AccessKeyId,SecretAccessKey,SessionToken]' \
-  --output text)
-
-echo "Role assumed successfully."
-
 # ---------- CREATE EC2 ----------
 echo "Creating EC2 Instance..."
 
