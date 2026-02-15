@@ -1,9 +1,13 @@
-#!/bin/bash
+!/bin/bash
+
+
 
 # ---------- VARIABLES ----------
 ROLE_ARN="arn:aws:iam::256585468679:role/Terraform-role"
 SESSION_NAME="jenkins-session"
 REGION="us-east-1"
+
+export AWS_DEFAULT_REGION=$REGION
 
 AMI_ID="ami-0c398cb65a93047f2"
 INSTANCE_TYPE="t2.micro"
