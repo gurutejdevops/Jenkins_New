@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         ENV_URL = "pipeline.google.com" //pipeline: All the stages of the pipeline can use it.
+        SSH_CRED = credentials('aws-user')
     }
 
     stages {
@@ -26,7 +27,8 @@ pipeline {
         }
         stage('stage three') {
             steps {
-                sh "echo stage three "
+                sh "echo stage three"
+                env
             }
         }
     }
