@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        ENV_URL = "pipeline.google.com"
+        ENV_URL = "pipeline.google.com" //pipeline: All the stages of the pipeline can use it.
     }
 
     stages {
@@ -16,8 +16,12 @@ pipeline {
             }
         }
         stage('stage two') {
+            environment {
+                BATCH = "b55"
+            }
             steps {
                 sh "echo stage two "
+                sh "echo ${BATCH}"
             }
         }
         stage('stage three') {
