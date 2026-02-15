@@ -1,10 +1,20 @@
 pipeline {
-    agent any
+    ageny any
 
     stages {
-        stage('Hello') {
+        stage('stage one') {
             steps {
-                echo 'Hello World'
+                sh "echo stage one "
+            }
+        }
+        stage('stage two') {
+            steps {
+                sh "echo stage two "
+            }
+        }
+        stage('stage one') {
+            steps {
+                sh "echo stage three "
             }
         }
     }
