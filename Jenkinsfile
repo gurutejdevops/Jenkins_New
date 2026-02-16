@@ -24,32 +24,37 @@ pipeline {
 
 
     stages {
-        stage('stage one') {
-            steps {
-                sh '''
-                echo stage one 
-                echo welcome to Jenkins
-                echo ${ENV_URL}
-                '''
-            }
+        stage ('parallel stages') {
+            parallel {
+                stage('stage one') {
+                    steps {
+                        sh '''
+                        echo stage one 
+                        echo welcome to Jenkins
+                        echo ${ENV_URL}
+                        mvn --version
+                        '''
+                    }
+                }
+                stage('stage two') {
+                    environment {
+                        BATCH = "b55"
+                    }
+                    steps {
+                        sh "echo stage two "
+                        sh "echo ${BATCH}"
+                        sh "mvn --version"
+                    }
+                }
+                stage('stage three') {
+                    steps {
+                        sh '''
+                        echo stage three
+                        env
+                        '''
+                    }
+                }
+            }   
         }
-        stage('stage two') {
-            environment {
-                BATCH = "b55"
-            }
-            steps {
-                sh "echo stage two "
-                sh "echo ${BATCH}"
-                sh "mvn --version"
-            }
-        }
-        stage('stage three') {
-            steps {
-                sh '''
-                echo stage three
-                env
-                '''
-            }
-        }
-    }
+    }   
 }
