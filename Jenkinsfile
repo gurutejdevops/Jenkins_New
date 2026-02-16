@@ -18,6 +18,10 @@ pipeline {
     //     pollSCM('*/2 * * * *')
     // }
 
+    tools {
+        maven 'maven-3.9.0'
+    }
+
 
     stages {
         stage('stage one') {
@@ -36,6 +40,7 @@ pipeline {
             steps {
                 sh "echo stage two "
                 sh "echo ${BATCH}"
+                sh "mvn clean"
             }
         }
         stage('stage three') {
