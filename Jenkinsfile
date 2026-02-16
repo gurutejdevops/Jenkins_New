@@ -38,9 +38,11 @@ pipeline {
                     }
                 }
                 stage('stage two') {
-                    environment {
-                        BATCH = "b55"
+                    
+                    when {
+                        environment name: 'ENV_URL', value= 'pipeline.google.com'
                     }
+
                     steps {
                         sh "echo stage two "
                         sh "echo ${BATCH}"
@@ -48,6 +50,9 @@ pipeline {
                     }
                 }
                 stage('stage three') {
+                    when {
+                        expression { params.TOGGLE == true }
+                    }
                     steps {
                         sh '''
                         echo stage three
