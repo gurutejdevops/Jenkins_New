@@ -24,10 +24,9 @@ pipeline {
 
 
     stages {
+        stage ('parallel stages') {
+            parallel {
                 stage('stage one') {
-                    when {
-                        branch 'main'
-                    }
                     steps {
                         sh '''
                         echo stage one 
@@ -55,7 +54,9 @@ pipeline {
                         echo sample branch executed successfully
                         '''
                     }
-                }   
+                }
+            }   
+        }
     }  
 
     post {
