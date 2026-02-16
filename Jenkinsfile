@@ -51,6 +51,7 @@ pipeline {
                         sh '''
                         echo stage three
                         env
+                        echo sample branch executed successfully
                         '''
                     }
                 }
