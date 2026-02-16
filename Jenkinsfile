@@ -40,7 +40,7 @@ pipeline {
             steps {
                 sh "echo stage two "
                 sh "echo ${BATCH}"
-                sh "mvn clean"
+                sh "mvn --version"
             }
         }
         stage('stage three') {
